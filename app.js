@@ -11,6 +11,14 @@
 
 -API we are using to added our subcribers to their server to--> https://mailchimp.com/developer/ 
 -After adding a user signup you can check your account "audience" > "all contacts" to see the user has subscribed in the list 
+
+-DEPLOY app on Heroku (Needs to have .git files in same project folder or install git repository command--> git init)
+--> touch Procfile   //and add the code "web: node app.js" into the file 
+--> heroku create       //create a heroku app for your app to be deployed 
+--> git push heroku main     //deploy app , after you made code changes also do this to push the new updated codes 
+--> heroku logs   //to see the app build logs and deploy logs including https connections fails if any
+
+https://still-fjord-21008.herokuapp.com/  --> this is the deployed web app link
 */
 
 const express = require("express");
@@ -61,7 +69,7 @@ app.post("/", function(request, response){
     //converting Javascript Object into JSON format 
     const jsonData = JSON.stringify(data); 
 
-    var audienceIDList = "fdf6023cff";
+    var audienceIDList = "........."; //input your audience ID key 
 
     //Note: "us20" is your API key server location, so check your API key 
     var url = "https://us20.api.mailchimp.com/3.0/lists/" + audienceIDList; 
@@ -69,7 +77,7 @@ app.post("/", function(request, response){
     //way of sending the user data 
     var options = {
         method: "POST",
-        auth: "Krittidet:699b34da6b6950ceca0aa35eabf98462-us20"
+        auth: "Krittidet:.............."  //input your API Key 
     }
 
     //request to send data to API website server to add the subscriber information to the list 
@@ -83,7 +91,7 @@ app.post("/", function(request, response){
             response.sendFile(__dirname + "/failure.html"); 
         }
 
-        //access to see data sent information 
+        //access to see data sent information to the API website server when a new subscriber adds (just for deugging purposes)
         res.on("data", function(data){
             console.log(JSON.parse(data));
         });
@@ -102,7 +110,7 @@ app.post("/failure", function(request, response){
 });
 
 //API key
-//699b34da6b6950ceca0aa35eabf98462-us20
+//.....................
 
 //Audience list ID (The list to put your subscribers into)
-//fdf6023cff
+//....................
