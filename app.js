@@ -15,6 +15,10 @@
 -DEPLOY app on Heroku (Needs to have .git files in same project folder or install git repository command--> git init)
 --> touch Procfile   //and add the code "web: node app.js" into the file 
 --> heroku create       //create a heroku app for your app to be deployed 
+--> specify the version node.js using in the "package.json" file
+"engines": {
+    "node": "14.x"
+  },
 --> git push heroku main     //deploy app , after you made code changes also do this to push the new updated codes 
 --> heroku logs   //to see the app build logs and deploy logs including https connections fails if any
 
